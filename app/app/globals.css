@@ -1,0 +1,253 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Dynamic Theme System - ONLY apply when dynamic-theme class is present on body */
+/* This allows standard next-themes dark/light mode to work when no custom colors are set */
+
+body.dynamic-theme {
+  background-color: var(--theme-background) !important;
+  color: var(--theme-foreground) !important;
+}
+
+/* Background overrides - only for dynamic theme */
+body.dynamic-theme .bg-background {
+  background-color: var(--theme-background) !important;
+}
+
+body.dynamic-theme .bg-card,
+body.dynamic-theme .bg-white,
+body.dynamic-theme .bg-gray-50,
+body.dynamic-theme .bg-gray-100,
+body.dynamic-theme .dark\\:bg-gray-800,
+body.dynamic-theme .dark\\:bg-gray-900 {
+  background-color: var(--theme-card-bg) !important;
+}
+
+/* Text color overrides - only for dynamic theme */
+body.dynamic-theme .text-foreground,
+body.dynamic-theme .text-gray-900,
+body.dynamic-theme .text-gray-800,
+body.dynamic-theme .text-gray-700,
+body.dynamic-theme .dark\\:text-white,
+body.dynamic-theme .dark\\:text-gray-100 {
+  color: var(--theme-foreground) !important;
+}
+
+body.dynamic-theme .text-muted-foreground,
+body.dynamic-theme .text-gray-600,
+body.dynamic-theme .text-gray-500,
+body.dynamic-theme .dark\\:text-gray-300,
+body.dynamic-theme .dark\\:text-gray-400 {
+  color: var(--theme-foreground) !important;
+  opacity: 0.7;
+}
+
+/* Border overrides - only for dynamic theme */
+body.dynamic-theme .border,
+body.dynamic-theme .border-border,
+body.dynamic-theme .border-b,
+body.dynamic-theme .border-t,
+body.dynamic-theme .border-gray-200,
+body.dynamic-theme .dark\\:border-gray-700,
+body.dynamic-theme .dark\\:border-gray-600 {
+  border-color: var(--theme-border) !important;
+}
+
+/* Primary color overrides - only for dynamic theme */
+body.dynamic-theme .bg-primary,
+body.dynamic-theme .bg-blue-600,
+body.dynamic-theme .bg-blue-500,
+body.dynamic-theme .bg-indigo-500,
+body.dynamic-theme .bg-indigo-600 {
+  background-color: var(--theme-primary) !important;
+  color: white !important;
+}
+
+body.dynamic-theme .text-primary {
+  color: var(--theme-primary) !important;
+}
+
+/* Header and navigation - only for dynamic theme */
+body.dynamic-theme header,
+body.dynamic-theme nav {
+  background-color: var(--theme-header-bg) !important;
+  border-color: var(--theme-border) !important;
+}
+
+/* Form elements - only for dynamic theme */
+body.dynamic-theme input,
+body.dynamic-theme textarea,
+body.dynamic-theme select {
+  background-color: var(--theme-card-bg) !important;
+  color: var(--theme-foreground) !important;
+  border-color: var(--theme-border) !important;
+}
+
+/* Buttons and interactive elements - only for dynamic theme */
+body.dynamic-theme button:not(.bg-primary):not([class*="bg-"]) {
+  background-color: var(--theme-card-bg) !important;
+  color: var(--theme-foreground) !important;
+  border-color: var(--theme-border) !important;
+}
+
+/* custom scrollbar for better ux */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* smooth transitions for interactive elements */
+.transition-shadow {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+/* loading animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* notification styles */
+.notification-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.notification-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.notification-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.notification-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* task priority colors - subtle visual indicators */
+.priority-low {
+  @apply border-l-4 border-l-gray-400;
+}
+
+.priority-medium {
+  @apply border-l-4 border-l-blue-500;
+}
+
+.priority-high {
+  @apply border-l-4 border-l-orange-500;
+}
+
+.priority-urgent {
+  @apply border-l-4 border-l-red-500;
+}
+
+/* Smooth transitions for theme changes - only when dynamic theme is active */
+body.dynamic-theme,
+body.dynamic-theme * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Icon and SVG color inheritance - only for dynamic theme */
+body.dynamic-theme .lucide,
+body.dynamic-theme .icon,
+body.dynamic-theme svg {
+  color: inherit;
+}
+
+/* Ensure Radix UI components respect theme colors - only for dynamic theme */
+body.dynamic-theme [data-radix-collection-item],
+body.dynamic-theme [role="tabpanel"],
+body.dynamic-theme [data-radix-popper-content-wrapper] {
+  background-color: var(--theme-card-bg) !important;
+  color: var(--theme-foreground) !important;
+  border-color: var(--theme-border) !important;
+}
